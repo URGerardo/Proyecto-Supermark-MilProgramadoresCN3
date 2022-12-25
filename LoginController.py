@@ -39,7 +39,6 @@ class IniciarSesion(ttk.Frame):
                 self.crearSupermercado(self.usuario.get(), False)
 
             elif datos[0] == self.contraseña.get() and datos[1] == "Admin":
-                print("¡Entraste! Eres admin")
                 self.parent.destroy()
                 self.crearSupermercado(self.usuario.get(), True)
 
@@ -62,7 +61,7 @@ class IniciarSesion(ttk.Frame):
     @staticmethod
     def crearSupermercado(usuario, permisoAdmin):
         nuevaInstancia = tk.Tk()
-        SuperMarkApplication(nuevaInstancia, usuario, permisoAdmin).grid()
+        SuperMarkApplication(nuevaInstancia, usuario, permisoAdmin)
         nuevaInstancia.mainloop()
 
 # Create Table clientes(id INTEGER UNIQUE NOT NULL, nombres TEXT NOT NULL, apellidos TEXT NOT NULL, correo TEXT NOT NULL UNIQUE, usuario TEXT NOT NULL UNIQUE, contraseña TEXT NOT NULL, rango INTEGER DEFAULT 1 NOT NULL, compras INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(id AUTOINCREMENT))

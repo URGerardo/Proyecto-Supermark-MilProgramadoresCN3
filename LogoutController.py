@@ -10,11 +10,13 @@
 #     print(i[0])
 #     print(i[1])
 
-# from DatabaseController import ConexionesBaseDatos
+from DatabaseController import ConexionesBaseDatos
 
-# a = ConexionesBaseDatos()
-# a.insertData("Create Table A(o TEXT)")
-# a.closeConection()
+a = ConexionesBaseDatos()
+a.insertData("UPDATE Productos SET cantidad=7 where id=1")
+data = a.executeQuery('Select cantidad from Productos where id=1')
+print(data)
+a.closeConection()
 
 
 import tkinter as tk
@@ -33,13 +35,14 @@ class IniciarSesion(ttk.Frame):
         title = ttk.Label(self.parent, text="Supermark | Siempre junto a vos", padding=20, font=("Arial", 20)).pack()
         
         titulo = ttk.LabelFrame(self.parent, text="Supermark | Siempre junto a vos", underline=20)
-        titulo.pack(side="top")
+        titulo.pack(side="top", fill='x')
 
         tk.Label(titulo, text="Hola").pack(side="left")
         self.name = ttk.Entry(titulo)
         self.name.pack()
 
 
-root = tk.Tk()
-a = IniciarSesion(root)
-a.mainloop()
+# root = tk.Tk()
+# a = IniciarSesion(root)
+# a.mainloop()
+

@@ -1,6 +1,7 @@
 
 from DatabaseController import ConexionesBaseDatos
 from CustomerController import Cliente
+from AdminController import Administrador
 
 class Usuario():
     def __init__(self):
@@ -29,10 +30,15 @@ class Usuario():
     @staticmethod
     def createCustomer(usuario):
         registros = ConexionesBaseDatos()
-        dataUser = registros.executeQuery(f'Select id, nombres, apellidos, usuario, contraseña from clientes where "{usuario}" = clientes.usuario or "{usuario}" == clientes.correo')
+        dataUser = registros.executeQuery(f'Select id, nombres, apellidos, usuario, contraseña, correo from clientes where "{usuario}" = clientes.usuario or "{usuario}" == clientes.correo')
         registros.closeConection()
-        clienteCreado = Cliente(id=dataUser[0], nombre = dataUser[1], apellido=dataUser[2], usuario=dataUser[3], contraseña=dataUser[4])
+        clienteCreado = Cliente(id=dataUser[0], nombre = dataUser[1], apellido=dataUser[2], usuario=dataUser[3], contraseña=dataUser[4], correo=dataUser[5])
         return clienteCreado
 
-    def createAdmin(self):
-        pass
+    @staticmethod
+    def createAdmin(user):
+        registros = ConexionesBaseDatos()
+        dataUser = registros.executeQuery(f'Select id, nombres, apellidos, usuario, contraseña, correo from clientes where "{user}" = clientes.usuario or "{user}" == clientes.correo')
+        registros.closeConection()
+        adminCreado = Administrador(dataUser[0], dataUser[1], dataUser[2], dataUser[3], dataUser[4], dataUser[5])
+        return adminCreado
